@@ -1,7 +1,8 @@
-import utility_classes.Window;
+import utility.Window;
 
+import java.awt.Toolkit;
 import java.awt.Dimension;
-import java.awt.GraphicsEnvironment;
+
 import javax.swing.JFrame;
 
 
@@ -11,20 +12,21 @@ public class Main {
 
         JFrame window = new JFrame("Title");
 
-        int height = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
-        int width = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
+        int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+        int height = (int) ((double)width / 16.0 * 9.0);
 
-        width = 500;
-        height = 500;
+        width = 32 * 32;
+        height = 24 * 32;
 
-        window.pack();
+        window.getContentPane().setPreferredSize(new Dimension(width, height));
         window.setResizable(false);
-        window.setSize(new Dimension(width , height));
+        window.pack();
+        
             
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLocationRelativeTo(null);
 
-        window.add(new Window());
+        window.add(new Window(width, height));
         window.setVisible(true);
 
         /*System.out.println(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height);
